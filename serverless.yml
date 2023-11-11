@@ -1,0 +1,31 @@
+service: e-commerce-image-microservice
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${param:region, us-east-1}
+  environment:
+    BUCKET_NAME: ${param:bucket-name}
+    SECRET_ACCESS_KEY: ${param:secret-key}
+    SECRET_ACCESS_KEY_ID: ${param:secret-access-key-id}
+    REGION: ${param:region}
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+
+functions:
+  hello:
+    handler: ./dist/index.handler
+    events:
+      - http:
+        path: /image
+        method: post
+
+resources:
+ Resources:
+   MyImageBucket:
+     Type: AWS::S3::Bucket
+     Properties:
+       BucketName: ${param:bucket-name}
