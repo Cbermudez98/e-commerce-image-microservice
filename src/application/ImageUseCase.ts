@@ -1,6 +1,6 @@
-import { IResponseUseCase } from "../domain/application/IResponseUseCase";
+import { IResponseUseCase } from "../domain/application/IResponseUseCase.interface";
 import { IImageCreate } from "../domain/image.interface";
-import { IRepositoryImage } from "../domain/repository/IRepositoryImage";
+import { IRepositoryImage } from "../domain/repository/IRepositoryImage.interface";
 
 export type TypeImageUseCase = (event: IImageCreate) => Promise<IResponseUseCase>;
 

@@ -1,7 +1,7 @@
 import AWS, { S3 } from "aws-sdk";
 
 import { IImage } from "../../domain/image.interface";
-import { IS3Service } from "../../domain/service/IS3Service";
+import { IS3Service } from "../../domain/service/IS3Service.interface";
 import { Environment } from "../../utils/Environment";
 
 export class S3Service implements IS3Service {

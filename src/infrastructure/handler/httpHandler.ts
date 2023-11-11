@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { objectValidator } from '../adapter/objectValidator/objectValidator.middleware';
-import { imageSchema } from '../adapter/schemas/image.schema';
-import { TypeImageUseCase } from '../../application/imageUseCase';
+import { objectValidator } from '../middlewares/objectValidator/ObjectValidator.middleware';
+import { imageSchema } from '../middlewares/schemas/image.schema';
+import { TypeImageUseCase } from '../../application/ImageUseCase';
 
 const extractBody = (event: string | null) => ({ image: event ? JSON.parse(event).image : "", filetype: event ? JSON.parse(event).filetype : "" });
 
@@ -16,7 +16,9 @@ export const httpHandler = (useCase: TypeImageUseCase) => async (event: APIGatew
     try {
         const body = extractBody(event.body);
         const valid = objectValidator(imageSchema)(body);
-        if (!valid) throw new Error("Bad Request");
+        if (!valid) {
+            return response(400, "Bad Request");
+        }
         const responseModel = await useCase(body as any);
         return response(200, responseModel.message);
     } catch (error) {

@@ -1,6 +1,6 @@
 import { IImage } from "../../domain/image.interface";
-import { IRepositoryImage } from "../../domain/repository/IRepositoryImage";
-import { IS3Service } from "../../domain/service/IS3Service";
+import { IRepositoryImage } from "../../domain/repository/IRepositoryImage.interface";
+import { IS3Service } from "../../domain/service/IS3Service.interface";
 
 export class RepositoryImage implements IRepositoryImage {
     private s3Service: IS3Service;

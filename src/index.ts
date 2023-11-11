@@ -1,4 +1,4 @@
-import { TypeImageUseCase, imageUseCase } from "./application/imageUseCase";
+import { TypeImageUseCase, imageUseCase } from "./application/ImageUseCase";
 import { httpHandler } from "./infrastructure/handler/httpHandler";
 import { RepositoryImage } from "./infrastructure/repositoty/RepositoryImage";
 import { S3Service } from "./infrastructure/service/S3Service";
